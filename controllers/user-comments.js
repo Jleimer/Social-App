@@ -9,7 +9,7 @@ const userController = {
             })
             .select('-__v')
         .sort({ _id: -1 })
-        .then(dbPizzaData => res.json(dbPizzaData))
+        .then(dbUserData => res.json(dbUserData))
         .catch(err => {
           console.log(err);
           res.status(400).json(err);
@@ -25,7 +25,7 @@ const userController = {
           .select('-__v')
           .then(dbUserData => {
             if (!dbUserData) {
-              res.status(404).json({ message: 'No pizza found with this id!' });
+              res.status(404).json({ message: 'No user found with this id!' });
               return;
             }
             res.json(dbUseraData);
