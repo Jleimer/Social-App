@@ -1,0 +1,26 @@
+{
+  "name": "social-app",
+  "version": "1.0.0",
+  "description": "Social Media App",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.0",
+    "mongoose": "^5.10.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jleimer/Social-App.git"
+  },
+  "author": "Jonathan Eimer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jleimer/Social-App/issues"
+  },
+  "homepage": "https://github.com/Jleimer/Social-App#readme"
+}
