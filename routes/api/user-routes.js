@@ -5,12 +5,14 @@ const {
     createUser,
     updateUser,
     deleteUser,
-    addFriend
+    addFriend,
+    deleteFriend
 } = require('../../controllers/user-comments');
 
 router
-    .route('/:id/friends/:id')
+    .route('/:userId/friends/:friendId')
     .post(addFriend)
+    .delete(deleteFriend)
 
 router
     .route('/')
