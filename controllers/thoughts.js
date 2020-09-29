@@ -13,17 +13,10 @@ const thoughtController = {
       findThoughtById({ params, body }, res) {
         console.log(body);
         Thought.findOne(
-            { _id: params.thoughtId },
-            { $push: { replies: body } },
-            { new: true, runValidators: true }
+            { _id: params.thoughtId }
+            // { $push: { replies: body } },
+            // { new: true, runValidators: true }
           )
-          .then(({ _id }) => {
-            return User.findOne(
-              { _id: params.userId },
-              { $push: { thoughts: _id } },
-              { new: true }
-            );
-          })
           .then(dbUserData => {
             if (!dbUserData) {
               res.status(404).json({ message: 'No User found with this id!' });
@@ -57,16 +50,16 @@ const thoughtController = {
             console.log(body);
             Thought.findOneAndUpdate(
                 {_id: params.thoughtId },
-                { $push: { thoughts: body } },
-                { new: true, runValidators: true}
+                // { $push: { thoughts: body } },
+                // { new: true, runValidators: true}
             )
-            .then(({ _id }) => {
-                return User.findOneAndUpdate(
-                    { _id: params.userId },
-                    { $push: { thoughts: _id } },
-                    { new: true }
-                );
-            })
+            // .then(({ _id }) => {
+            //     return User.findOneAndUpdate(
+            //         { _id: params.userId },
+            //         { $push: { thoughts: _id } },
+            //         { new: true }
+            //     );
+            // })
             .then(dbUserData => {
                 if (!dbUserData) {
                   res.status(404).json({ message: 'No User found with this id!' });

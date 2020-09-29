@@ -4,8 +4,13 @@ const {
     getUserById,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    addFriend
 } = require('../../controllers/user-comments');
+
+router
+    .route('/:id/friends/:id')
+    .post(addFriend)
 
 router
     .route('/')
