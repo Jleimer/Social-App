@@ -11,6 +11,10 @@ const userController = {
                 path: 'friends',
                 select: '-__v'
             })
+            .populate({
+                path: 'reactions',
+                select: '-__v'
+            })
             .select('-__v')
         .sort({ _id: -1 })
         .then(dbUserData => res.json(dbUserData))
