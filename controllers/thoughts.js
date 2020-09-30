@@ -87,17 +87,15 @@ const thoughtController = {
         editThought({ params, body }, res) {
             console.log(body);
             Thought.findOneAndUpdate(
-                {_id: params.thoughtId },
-                 { $push: { thoughts: body } },
-                 { new: true, runValidators: true}
+                {_id: params.thoughtId }, body, { new: true, runValidators: true}
             )
-             .then(({ _id }) => {
-                 return User.findOneAndUpdate(
-                     { _id: params.userId },
-                     { $push: { thoughts: _id } },
-                     { new: true }
-                 );
-             })
+            //  .then(({ _id }) => {
+            //      return User.findOneAndUpdate(
+            //          { _id: params.userId },
+            //          { $push: { thoughts: _id } },
+            //          { new: true }
+            //      );
+             //})
             .then(dbUserData => {
                 if (!dbUserData) {
                   res.status(404).json({ message: 'No User found with this id!' });
