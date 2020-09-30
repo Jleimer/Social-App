@@ -47,35 +47,43 @@ const thoughtController = {
               .catch(err => res.json(err));
         },
         addReaction({ params, body }, res) {
-            //console.log(body);
+            console.log(body);
                     Thought.findOneAndUpdate(
                       { _id: params.thoughtId },
-                      { $push: { reactions: body} },
+                      { $push: { reactions: body } },
                       { new: true }
                   )
-            // .populate({
-            //     path: 'friends',
-            //     select: '-__v'
-            //   })
-            //   .select('-__v')
+            
                .then((thought) => {
                    console.log("This is updated thought", thought)
                    res.json(thought)
-            //       return Thought.findOneAndUpdate(
-            //           { _id: params.thoughtId },
-            //           { $push: { reactions: _id} },
-            //           { new: true }
-            //       );
+           
                })
-            //   .then(dbUserData => {
-            //       if (!dbUserData) {
-            //         res.status(404).json({ message: 'No User found with this id!' });
-            //         return;
-            //       }
-            //       res.json(body);
-             //   })
                 .catch(err => res.json(err.message));
           },
+
+        deleteReaction({ params }, res) {
+            console.log(params);
+            // Thought.findOneAndDelete({ _id: params.reactionId })
+            // .then(deletedReaction => {
+            //   if (!deletedReaction) {
+            //     return res.status(404).json({ message: 'No thought with this id!' });
+            //   }
+              Thought.findOneAndUpdate(
+                { _id: params.thoughtId },
+                { $pull: { reactions: { _id: params.reactionId }} },
+                { new: true }
+              )
+            //})
+            .then(dbUserData => {
+              if (!dbUserData) {
+                res.status(404).json({ message: 'No user found with this id!' });
+                return;
+              }
+              res.json(dbUserData);
+            })
+            .catch(err => res.json(err));
+        },
         editThought({ params, body }, res) {
             console.log(body);
             Thought.findOneAndUpdate(
